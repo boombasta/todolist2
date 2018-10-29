@@ -1,0 +1,43 @@
+<div class="panel">
+  <div class="form-inline">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Input" [(ngModel)]="title" placeholder="Task">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="dp3" [(ngModel)]="deadlinedate" placeholder="Deadline date" disabled>
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <div class="col-md-offset-2 col-md-8">
+        <button mat-raised-button color="primary" class="add-button"
+                (click)="addItem ( title, createdate, deadlinedate, status)">Add
+        </button>
+        <button mat-raised-button color="primary" class="sort-button" (click)="Sort()">sort</button>
+      </div>
+    </div>
+  </div>
+  <table  class="card_body">
+    <tr>
+      <th>  </th>
+      <th>Title </th>
+      <th>Create Date</th>
+      <th mat-sort-header>Deadline</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of items; let i=index">
+      <button color="warn"  mat-icon-button (click)="deleteItem(i)">
+        <mat-icon>X</mat-icon>
+      </button>
+      <td>{{item.title}}</td>
+      <td >{{item.createdate | date}}</td>
+      <td>{{item.deadlinedate | date}}</td>
+      <!--<td>{{item.status}}</td>-->
+      <mat-select [(ngModel)]="item.status" name="level" class="select_first" >
+        <mat-option *ngFor="let level of levels" [value]="level.viewValue" class="select_second">
+          {{level.viewValue}}
+        </mat-option>
+      </mat-select>
+    </tr>
+  </table>
+</div>

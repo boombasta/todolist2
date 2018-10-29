@@ -1,29 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
-import {DataService} from './data.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule,  MatFormFieldModule, MatIconModule, MatInputModule} from '@angular/material';
+import {TasksModule} from './tasks/tasks.module';
+import {DataService} from './services/data.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatIconModule,
+    TasksModule,
   ],
-  providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [DataService]
 })
 export class AppModule { }
